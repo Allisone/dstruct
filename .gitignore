@@ -1,2 +1,8 @@
 node_modules
 workspace.xml
+.tscache
+.idea
+bower_components
+sc.log
+npm-debug.log
+*.iml
