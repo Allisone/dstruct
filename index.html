@@ -10,97 +10,22 @@
         body {
             padding-top: 20px;
             font-family: Alegreya;
+            font-size: 32pt;
         }
 
-        .footer {
-            border-top: 1px solid #eee;
-            margin-top: 40px;
-            padding-top: 40px;
-            padding-bottom: 40px;
-        }
-
-        /* Main marketing message and sign up button */
-        .jumbotron {
+        .header {
+            font-size: 40pt;
             text-align: center;
             background-color: transparent;
         }
 
-        .jumbotron .btn {
-            font-size: 21px;
-            padding: .5em 1em;
-        }
-
-        /* Customize the nav-justified links to be fill the entire space of the .navbar */
-
-        .nav-justified {
-            background-color: #eee;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .nav-justified > li > a {
-            padding-top: 15px;
-            padding-bottom: 15px;
-            color: #777;
-            font-weight: bold;
-            text-align: center;
-            border-bottom: 1px solid #d5d5d5;
-            background-color: #e5e5e5; /* Old browsers */
-            background-repeat: repeat-x; /* Repeat the gradient */
-            background-image: -moz-linear-gradient(top, #f5f5f5 0%, #e5e5e5 100%); /* FF3.6+ */
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #e5e5e5)); /* Chrome,Safari4+ */
-            background-image: -webkit-linear-gradient(top, #f5f5f5 0%, #e5e5e5 100%); /* Chrome 10+,Safari 5.1+ */
-            background-image: -ms-linear-gradient(top, #f5f5f5 0%, #e5e5e5 100%); /* IE10+ */
-            background-image: -o-linear-gradient(top, #f5f5f5 0%, #e5e5e5 100%); /* Opera 11.10+ */
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#e5e5e5', GradientType=0); /* IE6-9 */
-            background-image: linear-gradient(top, #f5f5f5 0%, #e5e5e5 100%); /* W3C */
-        }
-
-        .nav-justified > .active > a,
-        .nav-justified > .active > a:hover,
-        .nav-justified > .active > a:focus {
-            background-color: #ddd;
-            background-image: none;
-            box-shadow: inset 0 3px 7px rgba(0, 0, 0, .15);
-        }
-
-        .nav-justified > li:first-child > a {
-            border-radius: 5px 5px 0 0;
-        }
-
-        .nav-justified > li:last-child > a {
-            border-bottom: 0;
-            border-radius: 0 0 5px 5px;
-        }
-
-        @media (min-width: 768px) {
-            .nav-justified {
-                max-height: 52px;
-            }
-
-            .nav-justified > li > a {
-                border-left: 1px solid #fff;
-                border-right: 1px solid #d5d5d5;
-            }
-
-            .nav-justified > li:first-child > a {
-                border-left: 0;
-                border-radius: 5px 0 0 5px;
-            }
-
-            .nav-justified > li:last-child > a {
-                border-radius: 0 5px 5px 0;
-                border-right: 0;
-            }
-        }
-
         .marketing-column {
-            font-size: 2em
         }
 
         .marketing-column h2 {
             padding-bottom: .5em;
             color: #2980B9;
+            font-size: 40pt;
         }
 
         .marketing-column div.background {
@@ -129,10 +54,9 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="jumbotron">
-                <h1>Data Structures & Algorithims for TypeScript and JavaScript</h1>
-
-                <p class="lead">Meeting the demands of modern web applications.</p>
+            <div class="header">
+                <p>Data Structures for TypeScript and JavaScript</p>
+                <p>Meeting the demands of modern web applications.</p>
             </div>
         </div>
     </div>
@@ -156,8 +80,12 @@
                     and implementation, and do not take advantage of the upcoming features of JavaScript.
                 </p>
                 <ul>
-                    <li>Lack modularity.</li>
-                    <li>Lack separation of interface and implementation.</li>
+                    <li>Are limited in scope</li>
+                    <li>Do not provide static typings for TypeScript</li>
+                    <li>Have incompatible APIs</li>
+                    <li>Lack modularity</li>
+                    <li>Lack separation of interface and implementation</li>
+                    <li>Do not take advantage of the upcoming features of JavaScript</li>
                 </ul>
             </div>
         </div>
@@ -165,16 +93,8 @@
             <h2>Solution</h2>
             <div class="background">
                 <p>
-                    In JavaScript & TypeScript the only data structures provided are arrays, and string key hash maps.
-                    This limits the ability of developers to solve problems; where other data structures would work
-                    better with less code and more efficiency. Existing solutions are limited in scope, do not provide
-                    static typings for TypeScript, have incompatible APIs, lack modularity, lack separation of interface
-                    and implementation, and do not take advantage of the upcoming features of JavaScript.
+                    Create a comprehensive library of well-researched data structures which will increase the productivity of JavaScript and TypeScript developers. Release the library as open source with permissive licensing, and accept public contributions as well.
                 </p>
-                <ul>
-                    <li>Lack modularity.</li>
-                    <li>Lack separation of interface and implementation.</li>
-                </ul>
             </div>
 
         </div>
@@ -182,24 +102,17 @@
             <h2>Results</h2>
             <div class="background">
                 <p>
-                    In JavaScript & TypeScript the only data structures provided are arrays, and string key hash maps.
-                    This limits the ability of developers to solve problems; where other data structures would work
-                    better with less code and more efficiency. Existing solutions are limited in scope, do not provide
-                    static typings for TypeScript, have incompatible APIs, lack modularity, lack separation of interface
-                    and implementation, and do not take advantage of the upcoming features of JavaScript.
+                    Success was gauged by:
                 </p>
                 <ul>
-                    <li>Lack modularity.</li>
-                    <li>Lack separation of interface and implementation.</li>
+                    <li>Documentation for public APIs</li>
+                    <li>Extensive test coverage</li>
+                    <li>Published public modules containing the completed library</li>
+                    <li>Surveys conducted on various online development communities in order to determine the utility and quality of the library.</li>
                 </ul>
             </div>
         </div>
 
-    </div>
-
-    <!-- Site footer -->
-    <div class="footer">
-        <p>Cody Stebbins</p>
     </div>
 
 </div>
