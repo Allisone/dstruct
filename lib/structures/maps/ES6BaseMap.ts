@@ -9,7 +9,7 @@ export class ES6BaseMap<K extends Interfaces.IBaseObject, V extends Interfaces.I
 
   private keyCount = 0;
 
-  constructor(private map: ES6Helpers.Map<number, ES6Helpers.Entry<K, V>>) {
+  constructor(private map: ES6Helpers.IMap<number, ES6Helpers.IEntry<K, V>>) {
   }
 
   clear(): void {
@@ -167,7 +167,7 @@ export class ES6BaseMap<K extends Interfaces.IBaseObject, V extends Interfaces.I
     return this.keys();
   }
 
-  private swapEntryValue(entry: ES6Helpers.Entry<K, V>, key: K, value: V) {
+  private swapEntryValue(entry: ES6Helpers.IEntry<K, V>, key: K, value: V) {
     // Swap value
     var oldValue = entry.value;
     entry.value = value;

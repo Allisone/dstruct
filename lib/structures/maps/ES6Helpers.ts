@@ -5,11 +5,11 @@ import  * as Interfaces from '../../Interfaces';
  * Not necessarily complete, only the methods used within the library are part of the interface.
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_BaseObjects/Map
  */
-export interface Map<K, V> {
+export interface IMap<K, V> {
   size: number;
   clear(): void;
   delete(key: K): boolean;
-  //TODO: entries?
+  // TODO: entries?
   forEach(callback: Interfaces.IForEachMapCallback<K, V>): void;
   get(key: K): V;
   has(key: K): boolean;
@@ -18,17 +18,17 @@ export interface Map<K, V> {
   values(): Iterator<V>;
 }
 
-export interface Entry<K, V> {
+export interface IEntry<K, V> {
   key: K
   value: V;
-  next: Entry<K, V>; //TODO: consider using a singly linkedlist?
+  next: IEntry<K, V>; // TODO: consider using a singly linkedlist?
 }
 
 export class Iterator<E> implements Interfaces.IIterator<E> {
-  private currentEntry: Entry<any, any>;
+  private currentEntry: IEntry<any, any>;
   private done = false;
 
-  constructor(private iterator: Interfaces.IIterator<Entry<any, any>>, private valueCallback: (entry: Entry<any, any>) => any) {
+  constructor(private iterator: Interfaces.IIterator<IEntry<any, any>>, private valueCallback: (entry: IEntry<any, any>) => any) {
   }
 
   next(): Interfaces.IIteratorReturn<E> {

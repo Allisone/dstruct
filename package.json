@@ -51,7 +51,8 @@
     "time-grunt": "^1.0.0"
   },
   "dependencies": {
+    "es6-map-shim": "*",
     "lodash": "^3.2.0",
-    "es6-map-shim": "*"
+    "typescript": "^3.4.5"
   }
 }
