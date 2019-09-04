@@ -19,7 +19,7 @@ export interface IMap<K, V> {
 }
 
 export interface IEntry<K, V> {
-  key: K
+  key: K;
   value: V;
   next: IEntry<K, V>; // TODO: consider using a singly linkedlist?
 }
