@@ -1,4 +1,4 @@
-import Interfaces = require("../../Interfaces");
+import  * as Interfaces from '../../Interfaces';
 
 /**
  * Based on the MDN ES6 documentation of the upcoming ES6 Map proposal.
