@@ -7,171 +7,171 @@ import  * as ES6Helpers from './ES6Helpers';
 // TODO: benchmark this solution compared to actually implementing a HashMap with an array.
 export class ES6BaseMap<K extends Interfaces.IBaseObject, V extends Interfaces.IBaseObject> implements Interfaces.IMap<K, V> {
 
-  private keyCount = 0;
+    private keyCount = 0;
 
-  constructor(private map: ES6Helpers.IMap<number, ES6Helpers.IEntry<K, V>>) {
-  }
-
-  clear(): void {
-    this.map.clear();
-  }
-
-  containsKey(key: K): boolean {
-    Error.checkNotNull(key);
-
-    return this.get(key) !== null;
-  }
-
-  equals(map: Interfaces.IMap<K, V>): boolean {
-    return MapHelpers.equals(this, map);
-  }
-
-  hashCode(): number {
-    Error.notImplemented();
-    return null;
-  }
-
-  forEach(callback: Interfaces.IForEachMapCallback<K, V>): void {
-    Error.checkNotNull(callback);
-
-    this.map.forEach(function (entry) {
-      while (entry !== null) {
-        callback(entry.value, entry.key);
-        entry = entry.next;
-      }
-    });
-  }
-
-  get(key: K): V {
-    Error.checkNotNull(key);
-
-    // Check if the bucket exists
-    var entry = this.map.get(key.hashCode());
-    if (!entry) {
-      return null;
+    constructor(private map: ES6Helpers.IMap<number, ES6Helpers.IEntry<K, V>>) {
     }
 
-    // Check if an entry with the key exists in the bucket
-    while (entry !== null) {
-      if (entry.key.equals(key)) {
-        return entry.value;
-      }
-      entry = entry.next;
+    clear(): void {
+        this.map.clear();
     }
 
-    return null;
-  }
+    containsKey(key: K): boolean {
+        Error.checkNotNull(key);
 
-  isEmpty(): boolean {
-    return IterableHelpers.isEmpty(this);
-  }
-
-  keys(): Interfaces.IIterator<K> {
-    return new ES6Helpers.Iterator<K>(this.map.values(), (currentEntry) => {
-      return currentEntry.key;
-    });
-  }
-
-  remove(key: K): V {
-    Error.checkNotNull(key);
-
-    var hashCode = key.hashCode();
-    // Check if the bucket exists
-    var entry = this.map.get(hashCode);
-    if (!entry) {
-      return null;
+        return this.get(key) !== null;
     }
 
-    // Check if the first entry is the key
-    if (entry.key.equals(key)) {
-      this.keyCount--;
-      if (entry.next) {
-        // Map hashCode to entry.next if it exist s
-        this.map.set(hashCode, entry.next);
-      } else {
-        // Remove the hashCode mapping else
-        this.map.delete(hashCode);
-      }
-
-      return entry.value;
+    equals(map: Interfaces.IMap<K, V>): boolean {
+        return MapHelpers.equals(this, map);
     }
 
-    // Check if the next entry has the key and remove it from the bucket and set.
-    while (entry.next !== null) {
-      if (entry.next.key.equals(key)) {
-        this.keyCount--;
-        var removedEntry = entry.next;
-        entry.next = entry.next.next;
-        return removedEntry.value;
-      }
-      entry = entry.next;
+    hashCode(): number {
+        Error.notImplemented();
+        return null;
     }
 
-    return null;
-  }
+    forEach(callback: Interfaces.IForEachMapCallback<K, V>): void {
+        Error.checkNotNull(callback);
 
-  set(key: K, value: V): V {
-    Error.checkNotNull(key);
-    Error.checkNotNull(value);
-
-    // Check if the bucket exists
-    var hashCode = key.hashCode();
-    var entry = this.map.get(hashCode);
-    if (!entry) {
-      this.keyCount++;
-
-      // Map the hashCode to a new bucket if no bucket exists.
-      this.map.set(hashCode, {
-        key: key,
-        value: value,
-        next: null
-      });
-
-      return null;
+        this.map.forEach(function (entry) {
+            while (entry !== null) {
+                callback(entry.value, entry.key);
+                entry = entry.next;
+            }
+        });
     }
 
-    // Check if an entry with the key exists in the bucket
-    while (entry.next !== null) {
-      if (entry.key.equals(key)) {
-        return this.swapEntryValue(entry, key, value);
-      }
-      entry = entry.next;
+    get(key: K): V {
+        Error.checkNotNull(key);
+
+        // Check if the bucket exists
+        var entry = this.map.get(key.hashCode());
+        if (!entry) {
+            return null;
+        }
+
+        // Check if an entry with the key exists in the bucket
+        while (entry !== null) {
+            if (entry.key.equals(key)) {
+                return entry.value;
+            }
+            entry = entry.next;
+        }
+
+        return null;
     }
 
-    // Check if the last entry has the key. Else add it.
-    if (entry.key.equals(key)) {
-      return this.swapEntryValue(entry, key, value);
-    } else {
-      this.keyCount++;
-      entry.next = {
-        key: key,
-        value: value,
-        next: null
-      };
+    isEmpty(): boolean {
+        return IterableHelpers.isEmpty(this);
     }
 
-    return null;
-  }
+    keys(): Interfaces.IIterator<K> {
+        return new ES6Helpers.Iterator<K>(this.map.values(), (currentEntry) => {
+            return currentEntry.key;
+        });
+    }
 
-  size(): number {
-    return this.keyCount;
-  }
+    remove(key: K): V {
+        Error.checkNotNull(key);
 
-  values(): Interfaces.IIterator<V> {
-    return new ES6Helpers.Iterator<V>(this.map.values(), (currentEntry) => {
-      return currentEntry.value;
-    });
-  }
+        var hashCode = key.hashCode();
+        // Check if the bucket exists
+        var entry = this.map.get(hashCode);
+        if (!entry) {
+            return null;
+        }
 
-  __iterator__(): Interfaces.IIterator<K> {
-    return this.keys();
-  }
+        // Check if the first entry is the key
+        if (entry.key.equals(key)) {
+            this.keyCount--;
+            if (entry.next) {
+                // Map hashCode to entry.next if it exist s
+                this.map.set(hashCode, entry.next);
+            } else {
+                // Remove the hashCode mapping else
+                this.map.delete(hashCode);
+            }
 
-  private swapEntryValue(entry: ES6Helpers.IEntry<K, V>, key: K, value: V) {
-    // Swap value
-    var oldValue = entry.value;
-    entry.value = value;
-    return oldValue;
-  }
+            return entry.value;
+        }
+
+        // Check if the next entry has the key and remove it from the bucket and set.
+        while (entry.next !== null) {
+            if (entry.next.key.equals(key)) {
+                this.keyCount--;
+                var removedEntry = entry.next;
+                entry.next = entry.next.next;
+                return removedEntry.value;
+            }
+            entry = entry.next;
+        }
+
+        return null;
+    }
+
+    set(key: K, value: V): V {
+        Error.checkNotNull(key);
+        Error.checkNotNull(value);
+
+        // Check if the bucket exists
+        var hashCode = key.hashCode();
+        var entry = this.map.get(hashCode);
+        if (!entry) {
+            this.keyCount++;
+
+            // Map the hashCode to a new bucket if no bucket exists.
+            this.map.set(hashCode, {
+                key: key,
+                value: value,
+                next: null
+            });
+
+            return null;
+        }
+
+        // Check if an entry with the key exists in the bucket
+        while (entry.next !== null) {
+            if (entry.key.equals(key)) {
+                return this.swapEntryValue(entry, key, value);
+            }
+            entry = entry.next;
+        }
+
+        // Check if the last entry has the key. Else add it.
+        if (entry.key.equals(key)) {
+            return this.swapEntryValue(entry, key, value);
+        } else {
+            this.keyCount++;
+            entry.next = {
+                key: key,
+                value: value,
+                next: null
+            };
+        }
+
+        return null;
+    }
+
+    size(): number {
+        return this.keyCount;
+    }
+
+    values(): Interfaces.IIterator<V> {
+        return new ES6Helpers.Iterator<V>(this.map.values(), (currentEntry) => {
+            return currentEntry.value;
+        });
+    }
+
+    __iterator__(): Interfaces.IIterator<K> {
+        return this.keys();
+    }
+
+    private swapEntryValue(entry: ES6Helpers.IEntry<K, V>, key: K, value: V) {
+        // Swap value
+        var oldValue = entry.value;
+        entry.value = value;
+        return oldValue;
+    }
 
 }
