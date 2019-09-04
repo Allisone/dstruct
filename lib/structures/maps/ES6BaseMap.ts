@@ -9,7 +9,7 @@ export class ES6BaseMap<K extends Interfaces.IBaseObject, V extends Interfaces.I
 
     private keyCount = 0;
 
-    constructor(private map: ES6Helpers.IMap<number, ES6Helpers.IEntry<K, V>>) {
+    constructor(private map: Map<number, ES6Helpers.IEntry<K, V>>) {
     }
 
     clear(): void {
