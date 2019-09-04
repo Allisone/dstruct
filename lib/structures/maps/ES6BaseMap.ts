@@ -1,11 +1,11 @@
-import Interfaces = require("../../Interfaces");
-import Error = require("../../Error");
-import MapHelpers = require("./MapHelpers");
-import IterableHelpers = require("../IterableHelpers");
-import ES6Helpers = require("./ES6Helpers");
+import  * as Interfaces from '../../Interfaces';
+import  * as Error from '../../Error';
+import  * as MapHelpers from './MapHelpers';
+import  * as IterableHelpers from '../IterableHelpers';
+import  * as ES6Helpers from './ES6Helpers';
 
 // TODO: benchmark this solution compared to actually implementing a HashMap with an array.
-class ES6BaseMap<K extends Interfaces.IBaseObject, V extends Interfaces.IBaseObject> implements Interfaces.IMap<K, V> {
+export class ES6BaseMap<K extends Interfaces.IBaseObject, V extends Interfaces.IBaseObject> implements Interfaces.IMap<K, V> {
 
   private keyCount = 0;
 
@@ -175,5 +175,3 @@ class ES6BaseMap<K extends Interfaces.IBaseObject, V extends Interfaces.IBaseObj
   }
 
 }
-
-export = ES6BaseMap;
