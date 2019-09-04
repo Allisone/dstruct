@@ -2,7 +2,7 @@ import * as Interfaces from '../../Interfaces';
 import * as Error      from '../../Error';
 
 // TODO: attempt implementation without two maps.
-class MapBasedTable<R extends Interfaces.IBaseObject, C extends Interfaces.IBaseObject, V extends Interfaces.IBaseObject>
+export class MapBasedTable<R extends Interfaces.IBaseObject, C extends Interfaces.IBaseObject, V extends Interfaces.IBaseObject>
     implements Interfaces.ITable<R, C, V> {
 
     constructor(private rows: Interfaces.IMap<R, Interfaces.IMap<C, V>>,
@@ -68,7 +68,7 @@ class MapBasedTable<R extends Interfaces.IBaseObject, C extends Interfaces.IBase
         return null;
     }
 
-    //putAll
+    // putAll
     remove(rowKey: R, columnKey: C): V {
         var row = this.rows.get(rowKey);
         if (row) {
