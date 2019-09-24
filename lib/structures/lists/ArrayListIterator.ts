@@ -1,19 +1,17 @@
-import Interfaces = require("../../Interfaces");
+import * as Interfaces from '../../Interfaces';
 
-class ArrayListIterator<E extends Interfaces.IBaseObject> implements Interfaces.IIterator<E> {
-  private index = 0;
+export class ArrayListIterator<E extends Interfaces.IBaseObject> implements Interfaces.IIterator<E> {
+    private index = 0;
 
-  constructor(private array: E[]) {
-  }
+    constructor(private array: E[]) {
+    }
 
-  next(): Interfaces.IIteratorReturn<E> {
-    var next = this.index < this.array.length
-      ? {value: this.array[this.index], done: false}
-      : {value: null, done: true};
+    next(): Interfaces.IIteratorReturn<E> {
+        var next = this.index < this.array.length
+            ? {value: this.array[this.index], done: false}
+            : {value: null, done: true};
 
-    this.index++;
-    return next;
-  }
+        this.index++;
+        return next;
+    }
 }
-
-export = ArrayListIterator;
