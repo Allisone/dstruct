@@ -1,9 +1,6 @@
 import * as Interfaces from '../../Interfaces';
 import * as Error      from '../../Error';
 
-// (import )([a-z0-9]+)( = )(require\(")([a-z.\/0-9]+)("\);)
-// $1 * as $2 from '$5';
-
 // TODO: attempt implementation without two maps.
 export class MapBasedTable<R extends Interfaces.IBaseObject, C extends Interfaces.IBaseObject, V extends Interfaces.IBaseObject>
     implements Interfaces.ITable<R, C, V> {
