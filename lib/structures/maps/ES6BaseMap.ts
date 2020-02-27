@@ -46,10 +46,11 @@ export class ES6BaseMap<K extends Interfaces.IBaseObject, V extends Interfaces.I
         if (this.map.size === 0) {
             return null;
         }
-        Error.checkNotNull(key);
-
-        // Check if the bucket exists
-        var entry = this.map.get(key.hashCode());
+        if (key === null) {
+            var entry = this.map.get(null);
+        } else {
+            var entry = this.map.get(key.hashCode());
+        }
         if (!entry) {
             return null;
         }
