@@ -1,8 +1,10 @@
-import  * as Interfaces from '../../Interfaces';
-import  * as Error from '../../Error';
-import  * as MapHelpers from './MapHelpers';
+import {IIterator}           from '../../Interfaces';
+import  * as Interfaces      from '../../Interfaces';
+import  * as Error           from '../../Error';
+import {IEntry}              from './ES6Helpers';
+import  * as MapHelpers      from './MapHelpers';
 import  * as IterableHelpers from '../IterableHelpers';
-import  * as ES6Helpers from './ES6Helpers';
+import  * as ES6Helpers      from './ES6Helpers';
 
 // TODO: benchmark this solution compared to actually implementing a HashMap with an array.
 export class ES6BaseMap<K extends Interfaces.IBaseObject, V extends Interfaces.IBaseObject> implements Interfaces.IMap<K, V> {
@@ -71,7 +73,7 @@ export class ES6BaseMap<K extends Interfaces.IBaseObject, V extends Interfaces.I
     }
 
     keys(): Interfaces.IIterator<K> {
-        return new ES6Helpers.Iterator<K>(this.map.values(), (currentEntry) => {
+        return new ES6Helpers.Iterator<K>(this.map.values() as IIterator<IEntry<any, any>>, (currentEntry) => {
             return currentEntry.key;
         });
     }
@@ -162,7 +164,7 @@ export class ES6BaseMap<K extends Interfaces.IBaseObject, V extends Interfaces.I
     }
 
     values(): Interfaces.IIterator<V> {
-        return new ES6Helpers.Iterator<V>(this.map.values(), (currentEntry) => {
+        return new ES6Helpers.Iterator<V>(this.map.values() as IIterator<IEntry<any, any>>, (currentEntry) => {
             return currentEntry.value;
         });
     }
